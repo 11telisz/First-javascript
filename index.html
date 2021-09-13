@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+    <div>
+        <form>
+            <label for="uid">User ID:</label>
+            <input type="text" id="uid" name="uid">
+            <br>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname">
+            <br>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname">
+            <br>
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="birthday">
+        </form>
+
+        <button onclick="buttonPress()">Accept</button>
+        <p id="breath"></p>
+        <p id="xtest"></p>
+        <p id = "validation"></p>
+
+
+    </div>
+
+    <script>
+        var fname;
+        var lname;
+        var uid;
+        var birthday;
+        var upper = false;
+        var lower = false;
+        var num = false;
+
+        /*function varFill () {
+            fname = document.getElementById("fname").value;
+            lname = document.getElementById("lname").value;
+            uid = document.getElementById("uid").value;
+            birthday = document.getElementById("birthday").value;
+        }
+        */
+
+         function myUid() {
+             var uid = document.getElementById("uid").value;
+             const x = uid.match(/[A-z]/g);
+             const z = uid.match(/[0-9]/g);
+             if ((uid.length < 8) || (uid.length > 12) || (x == undefined)
+                 || (y == undefined) || (z == undefined)) {
+                 window.alert("Invalid user ID")
+             } else {document.getElementById("validation").appendChild = "Valid User ID"}
+         };
+
+        // function validation() {
+
+        //     var uid = document.getElementById("uid");
+          
+        //     for (let i = 0; i < uid.length; i++) {
+               
+        //         if (uid.charAt(i) >= '0' && uid.charAt(i) <= '9') {
+        //             num = true;
+        //         } else if (uid.charAt(i) == uid.charAt(i).toUpperCase()) {
+        //             upper = true;
+        //         } else if (uid.charAt(i) == uid.charAt(i).toLowerCase()) {
+        //             lower = true;
+        //         }
+        //     }
+        
+        //     if (upper && lower && num == true) {
+        //         document.getElementById("validation").appendChild(document.createTextNode(uid + "is your User ID"))
+        //     } else {
+        //         window.alert("Invalid User ID")
+        //         //document.getElementById("validation").appendChild(document.createTextNode("Not a valid User ID"))
+        //     }
+        // };
+
+        function fieldVer() {
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var birthday = document.getElementById("birthday").value
+            if (!fname || !lname || !birthday) {
+                alert("Please fill all fields.");
+            };
+            let userObject = {
+                "fname": fname,
+                "lname": lname,
+                "birthday": birthday
+            }
+            return userObject;
+        }
+
+               // put your JavaScript code to read HTML input
+        // and validate inputs here using if statements
+        // and document.getElementById().innerHTML to display results
+        // write your JS functions here
+        function dateDiff() {
+            let birthday = document.getElementById("birthday").value;
+            let today = Date.parse(new Date());
+            let birthdayInMilliseconds = Date.parse(birthday)
+            console.log(today);
+            console.log(birthdayInMilliseconds);
+
+            let difInTime = today - birthdayInMilliseconds;
+            //console.log(difInTime);
+            let difInDays = Math.ceil(difInTime / (1000 * 3600 * 24));
+            console.log(difInDays);
+            let userObject = fieldVer();
+            
+            if (difInDays < (6570)) {
+                document.getElementById("breath").appendChild(document.createTextNode("You are not old enough for this class!"));
+            } else {
+                document.getElementById("breath").appendChild(document.createTextNode(`${userObject.fname} ${userObject.lname} you have been breathing for ${difInDays} days!`));
+            }
+        };
+
+        function buttonPress() {
+            myUid();
+            dateDiff();
+        };
+
+
+        // write your JS Loop For here to print the Xs
+        let str = "";
+        for (let i = 0; i < 20; i++) {
+            str += "x";
+            document.getElementById("xtest").appendChild(document.createTextNode(str));
+            document.getElementById("xtest").appendChild(document.createElement('br'));
+
+        }
+
+
+    // use something like document.write(str.padStart(i,"x") + "<br>");
+
+    </script>
+
+</body>
+
+</html>
